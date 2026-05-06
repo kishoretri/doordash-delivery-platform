@@ -20,3 +20,12 @@ CREATE TABLE order_items (
     quantity      INTEGER NOT NULL,
     subtotal      DECIMAL(10,2) NOT NULL
 );
+
+CREATE TABLE order_outbox(
+  id               BIGSERIAL PRIMARY KEY,
+  aggregate_id     BIGINT NOT NULL,
+  event_type       VARCHAR(255) NOT NULL,
+  payload          JSON NOT NULL,
+  processed        BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

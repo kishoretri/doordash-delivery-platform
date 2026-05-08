@@ -25,7 +25,7 @@ CREATE TABLE order_outbox(
   id               BIGSERIAL PRIMARY KEY,
   aggregate_id     BIGINT NOT NULL,
   event_type       VARCHAR(255) NOT NULL,
-  payload          JSON NOT NULL,
+  payload          TEXT NOT NULL,
   processed        BOOLEAN NOT NULL DEFAULT FALSE,
   created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

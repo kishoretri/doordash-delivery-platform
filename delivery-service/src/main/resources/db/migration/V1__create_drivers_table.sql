@@ -1,0 +1,22 @@
+CREATE TABLE drivers(
+  id            BIGSERIAL PRIMARY KEY,
+  full_name     VARCHAR(100) NOT NULL,
+  phone         VARCHAR(100) NOT NULL UNIQUE,
+  email         VARCHAR(100) NOT NULL UNIQUE,
+  status        VARCHAR(20) NOT NULL,
+  is_active     BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE deliveries (
+  id            BIGSERIAL PRIMARY KEY,
+  order_id      BIGINT NOT NULL,
+  driver_id     BIGINT NOT NULL REFERENCES drivers(id),
+  status        VARCHAR(100) NOT NULL,
+  assigned_at   TIMESTAMP NOT NULL,
+  picked_up_at  TIMESTAMP,
+  delivered_at  TIMESTAMP,
+  created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
